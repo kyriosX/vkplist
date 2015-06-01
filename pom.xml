@@ -39,6 +39,18 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080</url>
+                    <server>TomcatServer</server>
+                    <path>/</path>
+                    <update>true</update>
+                </configuration>
+            </plugin>
+
             <!-- Skips the GWTTestCases during Junit Testing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -115,5 +127,6 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 </project>

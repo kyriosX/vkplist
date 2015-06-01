@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="VKPlistSaver:war exploded">
+    <output-path>$PROJECT_DIR$/target/VKPlistSaver-0.0.1</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="VKPlistSaver" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-user:2.6.1" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.0.0.GA" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:sources:1.0.0.GA" />
+          <element id="library" level="project" name="Maven: org.json:json:20090211" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-codeserver:2.6.1" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.6.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/VKPlistSaver-0.0.1/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="VKPlistSaver/web/Web" />
+      <element id="gwt-compiler-output" facet="VKPlistSaver/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
