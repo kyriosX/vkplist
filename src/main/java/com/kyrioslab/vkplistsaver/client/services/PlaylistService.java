@@ -1,6 +1,5 @@
 package com.kyrioslab.vkplistsaver.client.services;
 
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsonUtils;
 import com.kyrioslab.vkplistsaver.client.dto.Track;

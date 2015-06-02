@@ -1,0 +1,45 @@
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: none;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.h_align_center {
+    margin: 0 auto;
+}
+
+.widget_panel {
+
+}
+
+.table_panel {
+    background-color: #BBED7E;
+}
+
+.table_header {
+    background-color: #F6EDE7;
+}
+
+.button_panel {
+    margin-top: 5px;
+    padding-left: 55%;
+    background-color: #D2E7AF;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.button_panel > button {
+    margin-left: 5px;
+}
+
+.color_b {
+    background-color: #D2DB81;
+}
+
+.color_d {
+    background-color: burlywood;
+}

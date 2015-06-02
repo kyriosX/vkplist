@@ -1,7 +1,6 @@
 package com.kyrioslab.vkplistsaver.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import com.kyrioslab.vkplistsaver.client.dto.Track;
 import com.kyrioslab.vkplistsaver.client.services.PlaylistService;
 import com.kyrioslab.vkplistsaver.client.services.VKService;
 

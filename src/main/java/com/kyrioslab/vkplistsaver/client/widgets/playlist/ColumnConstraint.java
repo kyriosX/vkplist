@@ -1,4 +1,4 @@
-package com.kyrioslab.vkplistsaver.client.widgets;
+package com.kyrioslab.vkplistsaver.client.widgets.playlist;
 
 /**
  * Created by Ivan Kirilyuk on 01.06.15.

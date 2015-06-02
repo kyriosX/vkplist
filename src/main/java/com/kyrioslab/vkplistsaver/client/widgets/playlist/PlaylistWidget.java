@@ -1,33 +1,33 @@
-package com.kyrioslab.vkplistsaver.client.widgets;
+package com.kyrioslab.vkplistsaver.client.widgets.playlist;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.ui.*;
 import com.kyrioslab.vkplistsaver.client.dto.Track;
 import com.kyrioslab.vkplistsaver.client.services.VKService;
+import com.kyrioslab.vkplistsaver.client.widgets.playlist.styles.PlaylistWidgetStyles;
 
 /**
  * Created by Ivan Kirilyuk on 01.06.15.
  * Widget for VK music track list.
  */
-public class MusicTrackListWidget extends Composite {
+public class PlaylistWidget extends Composite {
 
     private static final int ROW_TITLE_INDEX = 0;
 
     private String widgetName;
     private VKService vkPlaylistService;
-    private ColumnConstraint [] columnConstraints;
+    private ColumnConstraint[] columnConstraints;
 
     /**
      * Base widget element.
      */
     private FlexTable flexTable = new FlexTable();
 
-    public MusicTrackListWidget(String name,
-                                ColumnConstraint[] columnConstraints,
-                                VKService vkPlaylistService) {
+    public PlaylistWidget(String name,
+                          ColumnConstraint[] columnConstraints,
+                          VKService vkPlaylistService) {
 
         this.widgetName = name;
         this.columnConstraints = columnConstraints;
@@ -37,14 +37,18 @@ public class MusicTrackListWidget extends Composite {
         Button btnDownload = new Button("Download");
         Button btnUpdateList = new Button("UpdateList");
 
-        HorizontalPanel hPanel = new HorizontalPanel();
-        hPanel.add(btnUpdateList);
-        hPanel.add(btnDownload);
+        FlowPanel buttonPanel = new FlowPanel();
+        buttonPanel.add(btnUpdateList);
+        buttonPanel.add(btnDownload);
 
         // assemble track list panel
-        VerticalPanel vPanel = new VerticalPanel();
-        vPanel.add(flexTable);
-        vPanel.add(hPanel);
+        VerticalPanel tablePanel = new VerticalPanel();
+        tablePanel.add(flexTable);
+
+        // assemble widget
+        VerticalPanel widget = new VerticalPanel();
+        widget.add(tablePanel);
+        widget.add(buttonPanel);
 
         flexTable.addClickHandler(new ClickHandler() {
             @Override
@@ -56,7 +60,13 @@ public class MusicTrackListWidget extends Composite {
             }
         });
 
-        initWidget(vPanel);
+        initWidget(widget);
+
+        //set styles
+        PlaylistWidgetStyles.setMainPanelStyles(widget);
+        PlaylistWidgetStyles.setButtonPanelStyles(buttonPanel);
+        PlaylistWidgetStyles.setTablePanelStyles(tablePanel);
+
         loadPlaylist();
     }
 
@@ -87,11 +97,27 @@ public class MusicTrackListWidget extends Composite {
                 flexTable.setText(row, indexOf("#"), String.valueOf(i + 1));
                 flexTable.setText(row, indexOf("Title"), t.getTitle());
                 flexTable.setText(row, indexOf("Artist"), t.getArtist());
-                flexTable.setText(row, indexOf("Duration"), t.getDuration());
+                flexTable.setText(row, indexOf("Duration"), formatDuration(t.getDuration()));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //set row dynamic styles
+        PlaylistWidgetStyles.setRowStyles(flexTable.getRowFormatter(), flexTable.getRowCount());
+    }
+
+    /**
+     * Formats duration seconds string to mm:ss format.
+     *
+     * @param duration seconds
+     * @return mm::ss
+     */
+    private String formatDuration(String duration) {
+        int t = Integer.parseInt(duration);
+        int s = t % 60;
+        int m = t / 60;
+        return m + "m:" + s + "s";
     }
 
     /**
@@ -99,6 +125,7 @@ public class MusicTrackListWidget extends Composite {
      */
     private void refreshTable() {
         flexTable.removeAllRows();
+
         // assemble track list table
         for (ColumnConstraint c : columnConstraints) {
             flexTable.setText(ROW_TITLE_INDEX, c.getIndex(), c.getName());
